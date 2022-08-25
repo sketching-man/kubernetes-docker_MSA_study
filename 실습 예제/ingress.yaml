@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: color-Ingress
+  labels:
+    project: color
+spec:
+  defaultBackend:
+    service:
+      name: green-Service
+      port:
+        number: 80
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /blue
+        backend:
+          service:
+            name: blue-Service
+            port:
+              number: 80
+      - pathType: Prefix
+        path: /red
+        backend: 
+          service:
+            name: red-Service
+            port:
+              number: 80
